@@ -87,6 +87,7 @@ class PID
   }
   std::unordered_map<std::string_view, std::vector<std::unique_ptr<TH1>>>& getMapOfHisto() { return mMapHist; }
   std::unordered_map<std::string_view, std::vector<std::unique_ptr<TCanvas>>>& getMapOfCanvas() { return mMapCanvas; }
+  TCanvas* getSeparationPower() {return cSeparationPowerCanvas;}
   const std::unordered_map<std::string_view, std::vector<std::unique_ptr<TH1>>>& getMapOfHisto() const { return mMapHist; }
   const std::unordered_map<std::string_view, std::vector<std::unique_ptr<TCanvas>>>& getMapOfCanvas() const { return mMapCanvas; }
 
@@ -105,6 +106,9 @@ class PID
   std::unordered_map<std::string_view, std::vector<std::unique_ptr<TCanvas>>> mMapCanvas;
   // Map for Histograms which will be put onto the canvases, and not published separately
   std::unordered_map<std::string_view, std::vector<std::unique_ptr<TH1>>> mMapHistCanvas;
+  // Canvas for Trending Separation Power
+  //std::unique_ptr<TCanvas> cSeparationPowerCanvas;
+  TCanvas* cSeparationPowerCanvas;
   ClassDefNV(PID, 1)
 };
 } // namespace qc

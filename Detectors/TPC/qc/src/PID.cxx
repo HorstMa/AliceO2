@@ -21,6 +21,7 @@
 #include "TCanvas.h"
 #include "TMathBase.h"
 #include "TObjArray.h"
+#include "TF1.h"
 
 // o2 includes
 #include "DataFormatsTPC/dEdxInfo.h"
@@ -45,8 +46,10 @@ const binning binsdEdxTot{2000, 0., 6000.};
 const binning binsdEdxMax{2000, 0., 2000.};
 const int mipTot = 50;
 const int mipMax = 50;
-const binning binsdEdxMIPTot{100, mipTot / 3., mipTot * 3.};
-const binning binsdEdxMIPMax{100, mipMax / 3., mipMax * 3.};
+//const binning binsdEdxMIPTot{100, mipTot / 3., mipTot * 3.};
+//const binning binsdEdxMIPMax{100, mipMax / 3., mipMax * 3.};
+const binning binsdEdxMIPTot{100, 5, mipTot * 3.};
+const binning binsdEdxMIPMax{100, 5, mipMax * 3.};
 const binning binsSec{36, 0., 36.};
 const auto bins = o2::tpc::qc::helpers::makeLogBinning(200, 0.05, 20);
 
@@ -98,6 +101,8 @@ void PID::initializeHistograms()
     mMapCanvas["CdEdxPIDHypothesisVsp"].emplace_back(std::make_unique<TCanvas>("CdEdxPIDHypothesisVsp", "PID Hypothesis Ratio"));
     mMapCanvas["CdEdxPIDHypothesisVsp"].at(0)->Divide(5, 2);
   }
+  //cSeparationPowerCanvas = std::make_unique<TCanvas>("CSeparationPower", "Separation Power");
+  cSeparationPowerCanvas = new TCanvas("CSeparationPower", "Separation Power");
 }
 
 //______________________________________________________________________________
@@ -217,6 +222,7 @@ bool PID::processTrack(const o2::tpc::TrackTPC& track, size_t nTracks)
       }
     }
   }
+
   if (mCreateCanvas) {
     for (auto const& pairC : mMapCanvas) {
       for (auto& canv : pairC.second) {
