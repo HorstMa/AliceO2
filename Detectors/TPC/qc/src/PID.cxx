@@ -21,6 +21,7 @@
 #include "TCanvas.h"
 #include "TMathBase.h"
 #include "TObjArray.h"
+#include "TF1.h"
 
 // o2 includes
 #include "DataFormatsTPC/dEdxInfo.h"
@@ -102,6 +103,8 @@ void PID::initializeHistograms()
     mMapCanvas["CdEdxPIDHypothesisVsp"].emplace_back(std::make_unique<TCanvas>("CdEdxPIDHypothesisVsp", "PID Hypothesis Ratio"));
     mMapCanvas["CdEdxPIDHypothesisVsp"].at(0)->Divide(5, 2);
   }
+  //cSeparationPowerCanvas = std::make_unique<TCanvas>("CSeparationPower", "Separation Power");
+  cSeparationPowerCanvas = new TCanvas("CSeparationPower", "Separation Power");
 }
 
 //______________________________________________________________________________
@@ -225,6 +228,7 @@ bool PID::processTrack(const o2::tpc::TrackTPC& track, size_t nTracks)
       }
     }
   }
+
   if (mCreateCanvas) {
     for (auto const& pairC : mMapCanvas) {
       for (auto& canv : pairC.second) {
