@@ -109,7 +109,7 @@ class PID
   // Map for Histograms which will be put onto the canvases, and not published separately
   std::unordered_map<std::string_view, std::vector<std::unique_ptr<TH1>>> mMapHistCanvas;
   // Canvas for Trending Separation Power
-  TCanvas* mSeparationPowerCanvas=nullptr;
+  TCanvas* mSeparationPowerCanvas = nullptr;
   ClassDefNV(PID, 1)
 };
 } // namespace qc
