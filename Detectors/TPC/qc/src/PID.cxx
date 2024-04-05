@@ -101,7 +101,6 @@ void PID::initializeHistograms()
     mMapCanvas["CdEdxPIDHypothesisVsp"].emplace_back(std::make_unique<TCanvas>("CdEdxPIDHypothesisVsp", "PID Hypothesis Ratio"));
     mMapCanvas["CdEdxPIDHypothesisVsp"].at(0)->Divide(5, 2);
   }
-  //cSeparationPowerCanvas = std::make_unique<TCanvas>("CSeparationPower", "Separation Power");
   cSeparationPowerCanvas = new TCanvas("CSeparationPower", "Separation Power");
 }
 
